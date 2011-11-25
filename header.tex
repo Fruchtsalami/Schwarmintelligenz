@@ -1,0 +1,123 @@
+----------------------------------------------------------------------------
+%  Koma-Skript Optionen
+%---------------------------------------------------------------------------
+\documentclass[
+	a4paper,
+	12pt,
+	%twocolumn,
+	headings=normal     % big,small
+]{scrbook} %scrartcl,scrbook,scrreprt
+
+%---------------------------------------------------------------------------
+%  Spracheinstellungen
+%---------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,ngerman]{babel}
+%Trennungsregeln mit
+\hyphenation{Sil-ben-trenn-ung Hun-de-ku-chen}
+
+%---------------------------------------------------------------------------
+%  Kopf- und Fußzeile
+%---------------------------------------------------------------------------
+
+% Gestaltung von Kopf- und Fußzeile über koma-Script
+\usepackage[automark]{scrpage2}
+	\ifoot[]{}
+	\cfoot[]{}
+	\ofoot[]{}
+	\automark[section]{section}
+	\chead[]{\headmark}
+	\ohead[]{}
+	\ohead[]{\pagemark}
+	\pagestyle{scrheadings}
+
+%---------------------------------------------------------------------------
+%  Seitenlayout
+%---------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{%
+	a4paper,
+	top=3.5cm,
+	left=2.3cm,
+	right=4.5cm,
+	bottom=4.5cm,
+}
+
+%---------------------------------------------------------------------------
+%  Schriften
+%---------------------------------------------------------------------------
+
+\usepackage{mathptmx}
+\usepackage[scaled]{helvet}
+
+%---------------------------------------------------------------------------
+%  Bibliographie
+%---------------------------------------------------------------------------
+
+\usepackage[style=authoryear,
+            hyperref=true,
+            isbn=false,
+            firstinits=true,
+]{biblatex}
+\bibliography{Data}       % Gibt den Ort der Bibliographiedatei an
+\usepackage[babel]{csquotes}
+
+%---------------------------------------------------------------------------
+%  Graphiken
+%---------------------------------------------------------------------------
+
+\usepackage{graphics}
+
+%---------------------------------------------------------------------------
+%  Tabellen
+%---------------------------------------------------------------------------
+
+\usepackage{booktabs}	% für schöne Tabellen
+
+%---------------------------------------------------------------------------
+%  Seiten- und Absatzumbruch
+%---------------------------------------------------------------------------
+
+\clubpenalty10000   % keine Schusterjungen
+\widowpenalty10000  % keine Hurenkinder
+\parindent0pt	% kein Einzug
+\flushbottom	% erzwinge gleich volle Seiten
+
+%---------------------------------------------------------------------------
+%  Für wissenschaftliche Arbeiten
+%---------------------------------------------------------------------------
+
+\newcommand{\fullname}{Vorname Nachname}
+\newcommand{\email}{vorname.nachname@uni-ulm.de}
+\newcommand{\titel}{Titel der Arbeit}
+\newcommand{\jahr}{2009}
+\newcommand{\matnr}{123456}
+\newcommand{\gutachterA}{Prof.\ Dr.\ Streng Geheim}
+\newcommand{\gutachterB}{Prof.\ Dr.\ Un Leserlich}
+\newcommand{\betreuer}{Betreuername}
+\newcommand{\fakultaet}{Ingenieurwissenschaften\\und Informatik}
+%\newcommand{\fakultaet}{Mathematik und\\Wirtschaftswissenschaften}
+%\newcommand{\fakultaet}{Naturwissenschaften}
+%\newcommand{\fakultaet}{Medizin}
+% nun noch unten das Institut einsetzen
+\newcommand{\institut}{Institut für Irgendetwas}
+
+\usepackage{setspace}	% \onehalfspacing, \singlespacing, \doublespacing
+
+%---------------------------------------------------------------------------
+%  Pdf-Setup
+%---------------------------------------------------------------------------
+
+\usepackage{microtype}	    % verbesserter Textsatz
+
+\usepackage[]{hyperref} 
+\hypersetup{
+    pdftitle=\titel{},
+    pdfauthor=\fullname{},
+    pdfsubject={Abschlussarbeit},
+    colorlinks=false,	% farbige Links abschalten
+    pdfborder=0 0 0	% keine Box um die Links!
+}
