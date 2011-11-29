@@ -1,0 +1,4 @@
+ssh-keygen -C "username@email.com" -t rsa
+
+git clone git@github.com:Fruchtsalami/Schwarmintelligenz.git
+
