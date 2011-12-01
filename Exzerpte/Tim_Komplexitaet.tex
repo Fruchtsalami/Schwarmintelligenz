@@ -1,0 +1,141 @@
+%
+% AMS-Pakete müssen importiert wereden und passende Theoreme müssen definiert werden
+%
+\section{Komplexität}
+%
+
+%
+\subsection*{Asymptotische Notation}
+%
+Da die genaue Angabe einer Laufzeit eines Algorithmus oft ein komplexer Ausdruck ist, wird dieser meist nur geschätzt. Die asymptotische Analyse ist so eine Schätzung, mit deren Hilfe man die Laufzeit des Algorithmus bei großen Eingabewerten beschreiben kann, indem man nur den höchsten Term der Laufzeit berücksichtigt und alle führenden Koeffizienten sowie kleineren Terme vernachlässigt. Dies führt zu folgender Definition der so genannten  \textit{groß-}$O$ \textit{Notation}.
+%
+\begin{definition}
+Seien $f$ und $g$ Funktionen mit $f,g: \: \mathbb{N} \longrightarrow \mathbb{R}_{\geq0}$. Es gilt $f(n) = O(g(n))$, wenn es positive ganze Zahlen $c$ und $n_0$ gibt sodass für jedes $n \geq n_0$ gilt:
+%
+\begin{equation*}
+	f(n) \leq cg(n).
+\end{equation*}
+Wenn $ f(n) = O(g(n))$ gilt sagen wir $g(n)$ ist eine \textnormal{obere Schranke} von $f(n)$ oder genauer  $g(n)$ ist eine \textnormal{ asymptotische obere Schranke} von $f(n)$.
+\end{definition}
+%
+Intuitiv bedeutet das, das $f$ kleiner gleich $g$ ist, wenn man konstante Faktoren vernachlässigt. Das $O$ stellt sozusagen die unterdrückte Konstante dar. Die Definition versteht man am besten anhand von Beispielen.
+%
+\begin{beispiel}
+Sei $f(n) = 3n^4 + 5n^3 +7log_2 n$ dann gilt $f(n) = O(n^4)$ , denn es gilt
+\begin{equation*}
+	3n^4 + 5n^3 +7log_2 n \leq 3n^4 +5n^4 + 7n^4 = 15n^4
+\end{equation*}
+\end{beispiel}
+%
+Es sei noch angemerkt das im Rahmen der $O$-Notation die Basis des Logarithmus nicht angegeben werden muss das sich die verschiedenen Basen nur durch einen konstanten Faktor unterscheiden. Dual zur $O$-Notation als obere Schranke kann man die $ \Omega$ \textit{-Notation} einführen.
+%
+\begin{definition}
+Seien $f$ und $g$ Funktionen mit $f,g: \: \mathbb{N} \longrightarrow \mathbb{R}_{\geq0}$. Es gilt $f(n) = \Omega (g(n))$, wenn es positive ganze Zahlen $c$ und $n_0$ gibt sodass für jedes $n \geq n_0$ gilt:
+\begin{equation*}
+	f(n) \geq cg(n).
+\end{equation*}
+Wenn $ f(n) = O(g(n))$ gilt sagen wir $g(n)$ ist eine \textnormal{untere Schranke} von $f(n)$ oder genauer  $g(n)$ ist eine \textnormal{ asymptotische untere Schranke} von $f(n)$.
+\end{definition}
+%
+
+Schlussendlich kann man noch die \textit{klein-}$O$ \textit{Notation} definieren, die im Gegensatz zu der groß-$O$ Notation aussagt, falls eine Funktion asymptotisch gesehen weniger ist als eine andere ist.
+%
+\begin{definition}
+Seien $f$ und $g$ Funktionen mit $f,g: \: \mathbb{N} \longrightarrow \mathbb{R}_{\geq0}$. Es gilt $f(n) = o(g(n))$, wenn gilt:
+\begin{equation*}
+	\lim\limits_{n \rightarrow \infty}{\frac{f(n)}{g(n)}} = 0
+\end{equation*}
+In andren Worten bedeute $f(n) = o(g(n))$ das es zu jeder reellen Zahl $c$ ein $n_0$ gibt mit $f(n) < cg(n)$ für alle $n \geq n_0$.
+\end{definition}
+%
+%
+%
+\subsection*{Die Klasse P}
+%
+Dieser Abschnitt beginnt mit einer Definition zu der \textit{Klasse der Zeitkomplexität}.
+%
+\begin{definition}
+Sei  $f: \: \mathbb{N} \longrightarrow \mathbb{R}_{\geq0}$ eine Funktion. Die Klasse der Zeitkomplexität \textnormal{TIME}$(t(n))$ ist die Menge aller Sprachen die von einer Turingmaschine in $O(t(n))$ entschieden werden.
+\end{definition}
+%
+Es ist zweckdienlich zu sagen, dass polynomielle Unterschiede in der Laufzeit als klein zu betrachten sind, wohingegen exponentielle Unterschiede als groß betrachtet werden. Warum ist diese Unterscheidung sinnvoll?
+Um das zu beantworten, muss man sich nur die Wachstumsgeschwindigkeit vor Augen führen. Zum Beispiel seien $n^3$ und $2^n$ Laufzeiten von Algorithmen, für $n = 1000$ beträgt die Laufzeit im ersten Fall genau eine Milliarde Rechenschritte, wohingegen im zweiten Fall die Laufzeit um einiges größer ist als die geschätzte Anzahl an Atomen im Universum. Daraus kann man schließen, dass polynomielle Algorithmen häufig nützlich sind, exponentielle Algorithmen sind dagegen nur selten sinnvoll.
+
+\hspace*{15pt}Häufig treten exponentielle Laufzeiten auf, falls man Probleme unüberlegt löst zum Beispiel durch einen \textit{Brute-Force} Ansatz, also das man einfach alle möglichen Lösungen der Reihe nach durchprobiert. Oft gibt es allerdings geschickterer Ansätze, diese werden häufig bekannt, wenn man sich tiefer mit dem gegebenen Problem beschäftigt.
+
+\hspace*{15pt}Von nun an werden polynomielle Unterschiede 
+weites gehend ignoriert, um so eine Unabhängigkeit der zugrunde liegenden Berechnungsmaschine zu erreichen. Allerdings ist es nicht so das diese Unterschiede von geringer Relevanz bzw. Wichtigkeit wären, es ist nur, das in diesem Kontext eine andere Sichtweise sich als nützlich erweisen wird. 
+
+\hspace*{15pt}Die nachfolgende Definition ist in der Komplexitätstheorie von fundamentaler Bedeutung.
+%
+\begin{definition}
+\textnormal{P} ist die Klasse der Sprachen die in polynomieller Zeit von eine deterministischen Ein-Band-Turingmaschine entschieden wird. Mit anderen Worten,
+\begin{equation*}
+	\textnormal{P} = \bigcup_{k} \textnormal{TIME}(n^k).
+\end{equation*}
+\end{definition}
+%
+Die Klasse \textbf{P} ist wegen mehrerer Gründe wichtig.
+\begin{itemize}
+%		
+		\item[(1)] P ist invariant gegenüber allen Berechnungsmodellen, die in polynomieller Weise 							äquivalent zu einer Ein-Band-Turingmaschine sind.
+		\item[(2)]  P kann man grob gesagt als die Klasse von Problemen bezeichnen, die effizient zu 						lösen sind.
+%
+\end{itemize}
+-Hier vllt noch eine Beispiel-
+%
+%
+%
+\subsection*{Die Klasse NP}
+%
+Für viele interessante und wichtige Probleme sind bisher jedoch noch keine effizienten Algorithmen bekannt die, das gegebenen Problem vollständig lösen. Die Frage tut sich auf, warum das so ist. Zum einen kann es sein das bisher einfach noch kein entsprechender Algorithmus gefunden wurde zum andren kann es auch sein das ein solcher Algorithmus gar nicht existieren kann. Somit bleibt die Frage zunächst unbeantwortet.
+%
+\begin{definition}
+Ein \textnormal{Entscheider} einer Sprache $A$ ist ein Algorithmus $V$, mit
+\begin{equation*}
+	A=\lbrace w; \; V \textit{akzeptiert } \langle w,c\rangle \textit{ für einen String } c\rbrace
+\end{equation*}
+Wir messen die Zeit eines Entscheiders nur in Form der Länge von $w$.
+\end{definition}
+%
+Daraus ergibt sich folgende Definition.
+%
+\begin{definition}
+\textnormal{NP} ist die Klasse von Sprachen die in polynomieller Zeit entschieden werden, die also einen in polynomieller Zeit laufenden Entscheider haben.
+\end{definition}
+%
+Viele Beispiele von Problem mit praktischer Relevanz liegen in dieser Klasse. Es ist klar das P in NP enthalten ist also das gilt P$ \subset $NP, aber ob dies Inklusion echt ist ein bisher noch ungelöstes Problem. Im Allgemeinen wir vermutet das P$ \neq$NP gilt. Das liegt vor allem daran, das viele Fragestellungen bekannt sind, von denen nachgewiesen wurden ist, dass sie zwar in NP liegen, wo aber keine polynomielle Algorithmen bekannt sind.
+%
+\subsection*{NP vollständige Probleme}
+%
+Ein anderer Grund, warum die oben gegebene Fragestellung von zentraler Wichtigkeit ist besteht in der Theorie der NP vollständigen Probleme. Es kann nämlich gezeigt werden das alle NP vollständigen Probleme in gewisser Weise zusammenhängen. Hat man ein Problem als  NP vollständig erkannt und findet man für dieses Problem eine vollständige Lösung in polynomieller Zeit so sind alle anderen  NP vollständigen Probleme auch in polynomieller Zeit lösbar. Ferner würde daraus Folgen, das die beiden oben beschriebenen Klassen gleich wären. Allerdings ist aufgrund obiger Vermutung nicht anzunehmen das eine solcher Algorithmus gefunden werden kann, ein solcher also nicht existiert. 
+
+\hspace*{15pt}Da unser Problem -Hier Definition von dem Problem eintragen- ebenfalls in dieser Klasse liegt ist es naheliegend über Alternativen nachzudenken, um es dennoch in akzeptabler Weise lösen zu können. Dies führt zu den sogenannten heuristischen Algorithmen.
+%
+%
+%
+\subsection*{Heuristische Algorithmen}
+%
+Unter heuristischen Algorithmen versteht man eine Sammelbezeichnung für Algorithmen von einem bestimmten Typ, sie versuchen den (meist exponentiell großen) Lösungsraum gesteuert durch sogenannte \textit{Heuristiken} zu durchsuchen, um so schnell eine möglichst optimale Lösung zu finden. Bei diesen Heuristiken handelt es sich um problemspezifische Informationen, die es ermöglichen sollen eine gute Lösung schneller zu finden. Meistens kann man aber keine Garantie gegeben das die gefundene Lösung auch wirklich in jedem Fall optimal ist. Deswegen löst diese Klasse von Algorithmen das Problem oft nicht vollständig. Jedoch reicht es in vielen Bereichen eine nur relativ gute Lösung zu finden.
+
+Ein Teil dieser Algorithmen sind die sogenannten genetischen Algorithmen.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
